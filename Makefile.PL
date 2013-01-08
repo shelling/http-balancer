@@ -1,13 +1,23 @@
 use inc::Module::Install;
-name 'HTTP-Balancer';
-all_from 'lib/HTTP/Balancer.pm';
 
-# requires '';
+name            'HTTP-Balancer';
+all_from        'lib/HTTP/Balancer.pm';
+author          'shelling <navyblueshellingford@gmail.com>';
+license         'MIT';
+perl_version    '5.010';
 
-tests 't/*.t';
-author_tests 'xt';
+install_script  'bin/http-balancer';
 
-test_requires 'Test::More';
-auto_set_repository;
+requires        'Modern::Perl';
+requires        'Moose';
+requires        'MooseX::Getopt';
+requires        'MooseX::Singleton';
+requires        'Namespace::Dispatch'   => '0.04';
+
+test_requires   'Test::More';
+
+tests           't/*.t';
+author_tests    'xt';
+
 auto_include;
 WriteAll;
