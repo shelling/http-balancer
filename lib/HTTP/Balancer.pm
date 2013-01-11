@@ -24,7 +24,7 @@ __END__
 
 =head1 NAME
 
-HTTP::Balancer - build http load balancer 
+HTTP::Balancer - manage your http load balancer in seconds
 
 =head1 SYNOPSIS
 
@@ -43,6 +43,7 @@ shelling E<lt>navyblueshellingford@gmail.comE<gt>
 =head1 SEE ALSO
 
 L<Namespace::Dispatch>
+L<MooseX::Getopt>
 
 =head1 LICENSE
 
