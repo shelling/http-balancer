@@ -16,7 +16,7 @@ requires        'Namespace::Dispatch'   => '0.05';
 
 test_requires   'Test::More';
 
-tests           't/*.t';
+tests           't/*.t t/*/*.t';
 author_tests    'xt';
 
 auto_include;
