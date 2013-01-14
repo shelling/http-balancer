@@ -32,6 +32,22 @@ sub prepare {
     return $self;
 }
 
+=head2 command_name
+
+class and instance method
+
+returns the last name of current command, lowercase, separated with whitespace.
+
+=cut
+
+sub command_name {
+    my ($self, ) = @_;
+    my $ref = ref($self) || $self;
+    $ref =~ s{HTTP::Balancer::Command::}{};
+    $ref =~ s{::}{ }g;
+    return lc($ref);
+}
+
 no Moose::Role;
 
 1;
