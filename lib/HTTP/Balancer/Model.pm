@@ -3,6 +3,8 @@ use Modern::Perl;
 use Moose;
 use File::Spec;
 
+with qw(HTTP::Balancer::Role);
+
 =head1 NAME
 
 HTTP::Balancer::Model - the base class of models of HTTP::Balancer
