@@ -12,6 +12,7 @@ requires        'Modern::Perl';
 requires        'Moose';
 requires        'MooseX::Getopt';
 requires        'MooseX::Singleton';
+requires        'MooseX::Storage';
 requires        'Namespace::Dispatch'   => '0.05';
 
 test_requires   'Test::More';
