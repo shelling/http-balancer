@@ -118,4 +118,19 @@ sub all {
     map { $self->load($_) } $self->glob;
 }
 
+=head2 find($attr => $value)
+
+class method
+
+returns the first object satisfying the condition from disk.
+
+=cut
+
+sub find {
+    my ($self, $attr, $value) = @_;
+    for ($self->all) {
+        return $_ if $_->$attr eq $value;
+    }
+}
+
 1;
