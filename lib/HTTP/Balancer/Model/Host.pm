@@ -19,4 +19,10 @@ has name => (
     isa => "Str",
 );
 
+sub backends {
+    my ($self, ) = @_;
+    $self->model("Backend")
+         ->where(host_id => $self->id);
+}
+
 1;

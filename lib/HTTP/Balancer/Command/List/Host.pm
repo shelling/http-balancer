@@ -7,6 +7,9 @@ sub run {
     my ($self, ) = @_;
     map {
         say $_->name;
+        for my $backend ($_->backends) {
+            say "    ", $backend->address;
+        }
     } $self->model("Host")->all;
 }
 
