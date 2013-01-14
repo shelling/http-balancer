@@ -32,19 +32,6 @@ sub prepare {
     return $self;
 }
 
-=head2 model()
-
-given the last name of a model, returns the whole name of the model, and requires this model.
-
-=cut
-
-sub model {
-    my ($self, $name) = @_;
-    my $model = "HTTP::Balancer::Model::$name";
-    eval qq{use $model};
-    return $model;
-}
-
 no Moose::Role;
 
 1;
