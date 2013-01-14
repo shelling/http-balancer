@@ -135,4 +135,19 @@ sub find {
     }
 }
 
+=head2 where($attr => $value)
+
+class method
+
+returns all objects satisfying the condition from disk
+
+=cut
+
+sub where {
+    my ($self, $attr, $value) = @_;
+    grep {
+        $_->$attr eq $value
+    } $self->all;
+}
+
 1;
