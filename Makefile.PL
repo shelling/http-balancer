@@ -13,7 +13,7 @@ requires        'Moose';
 requires        'MooseX::Getopt';
 requires        'MooseX::Singleton';
 requires        'MooseX::Storage';
-requires        'Namespace::Dispatch'   => '0.06';
+requires        'Namespace::Dispatch'   => '0.07';
 
 test_requires   'Test::More';
 
