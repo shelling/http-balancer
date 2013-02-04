@@ -25,6 +25,6 @@ HTTP::Balancer::Command::Help - show help messages
 
 =head1 SYNOPSIS
 
-    sh $ http-balancer help
+    $ http-balancer help
 
 =cut
