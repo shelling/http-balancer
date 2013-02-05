@@ -18,7 +18,7 @@ HTTP::Balancer::Model - the base class of models of HTTP::Balancer
 
 =cut
 
-our $dbpath = "/tmp/";
+our $dbpath = "/var/lib/http-balancer/";
 
 =head1 FUNCTIONS AND METHODS
 
