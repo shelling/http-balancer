@@ -63,10 +63,12 @@ returns the path for storing current object
 
 sub path {
     my ($self, ) = @_;
+    $self->id ?
     File::Spec->catfile(
         $self->model_dir,
         $self->id
-    );
+    )
+    : undef;
 }
 
 =head2 glob
