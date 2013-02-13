@@ -82,7 +82,7 @@ returns all entities stored in model_dir, sorted with id.
 sub glob {
     my ($self, ) = @_;
     sort {
-        pop [File::Spec->splitpath($a)] <=> pop [File::Spec->splitpath($b)]
+        [File::Spec->splitpath($a)]->[-1] <=> [File::Spec->splitpath($b)]->[-1]
     }
     glob(File::Spec->catfile($self->model_dir, "*"));
 }
@@ -101,8 +101,8 @@ sub save {
     my ($self, ) = @_;
 
     unless ($self->id) {
-        my $last = pop [$self->glob];
-        my $num = $last ? pop [File::Spec->splitpath($last)] : 0;
+        my $last = [$self->glob]->[-1];
+        my $num = $last ? [File::Spec->splitpath($last)]->[-1] : 0;
         $self->id($num+1)
     }
 
