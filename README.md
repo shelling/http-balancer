@@ -1,5 +1,7 @@
 # HTTP::Balancer
 
+[![Build Status](https://travis-ci.org/shelling/http-balancer.png?branch=master)](https://travis-ci.org/shelling/http-balancer)
+
 HTTP::Balancer is a abstract layer to manage your http load balancers. It
 stores your configurations, launches the arbitrary implementation of balancers
 on demand, and switches between implementations without extra effort.
