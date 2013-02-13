@@ -4,7 +4,7 @@ name            'HTTP-Balancer';
 all_from        'lib/HTTP/Balancer.pm';
 author          'shelling <navyblueshellingford@gmail.com>';
 license         'MIT';
-perl_version    '5.010';
+perl_version    '5.012';
 
 install_script  'bin/http-balancer';
 
@@ -18,6 +18,7 @@ requires        'YAML::Any';
 requires        'Path::Tiny';
 
 test_requires   'Test::More';
+test_requires   'Test::Exception';
 test_requires   'local::lib';
 
 tests           't/*.t t/*/*.t';
