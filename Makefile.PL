@@ -4,7 +4,7 @@ name            'HTTP-Balancer';
 all_from        'lib/HTTP/Balancer.pm';
 author          'shelling <navyblueshellingford@gmail.com>';
 license         'MIT';
-perl_version    '5.012';
+perl_version    '5.010';
 
 install_script  'bin/http-balancer';
 
