@@ -23,7 +23,13 @@ throws_ok (
 throws_ok (
     sub { HTTP::Balancer::Actor::Foo->stop },
     qr{you do not implement the stop\(\) for HTTP::Balancer::Actor::Foo},
-    'die if not implement stop()',
+    "die if not implement stop()",
+);
+
+throws_ok (
+    sub { HTTP::Balancer::Actor::Foo->executable },
+    qr{HTTP::Balancer::Actor::Foo::NAME not defined yet},
+    "die if not provided \$NAME",
 );
 
 done_testing;
