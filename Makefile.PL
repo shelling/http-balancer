@@ -18,6 +18,7 @@ requires        'YAML::Any';
 requires        'Path::Tiny';
 
 test_requires   'Test::More';
+test_requires   'local::lib';
 
 tests           't/*.t t/*/*.t';
 author_tests    'xt';
