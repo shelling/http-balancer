@@ -153,3 +153,21 @@ sub where {
 }
 
 1;
+__END__
+
+=head1 NAME
+
+HTTP::Balancer::Model - the base class of models of HTTP::Balancer
+
+=head1 SYNOPSIS
+
+    package HTTP::Balancer::Model::Foo;
+    use Modern::Perl;
+
+    use Moose;
+    extends qw(HTTP::Balancer::Model);
+
+    use MoooseX::Storage;
+    with Storage(format => 'YAML', io => 'File');
+
+=cut
