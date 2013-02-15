@@ -5,6 +5,9 @@ use Path::Tiny;
 
 with qw(HTTP::Balancer::Role);
 
+use File::Slurp qw(slurp);
+use Text::Xslate;
+
 our @PATH = qw(
     /usr/local/bin
     /usr/local/sbin
@@ -34,6 +37,18 @@ sub executable {
     }
 }
 
+sub template {
+    my ($self, ) = @_;
+    no strict "refs";
+    my $result = slurp(\*{ref($self) . "::DATA"});
+    $result;
+}
+
+sub render {
+    my ($self, %args) = @_;
+    Text::Xslate->new->render_string($self->template, \%args);
+}
+
 1;
 __END__
 
@@ -43,13 +58,17 @@ HTTP::Balancer::Actor - the base class of actors of HTTP::Balancer
 
 =head1 SYNOPSIS
 
-    package HTTP::Balancer::Actor;
+    package HTTP::Balancer::Actor::Foo;
     use Modern::Perl;
     use Moose;
     extends qw(HTTP::Balancer::Actor);
 
     sub start { ... }
     sub stop  { ... }
+
+    1;
+    __DATA__
+    here goes the template of configuration
 
 =head1 DESCRIPTION
 
