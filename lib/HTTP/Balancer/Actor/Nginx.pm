@@ -29,6 +29,8 @@ HTTP::Balancer::Actor::Nginx - the Nginx actor
 
 __DATA__
 
+pid <: $pidfile :>;
+
 http {
 
     upstream backend {
