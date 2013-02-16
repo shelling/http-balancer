@@ -27,11 +27,10 @@ sub stop {
 
 sub executable {
     my $class = ref($_[0]) ? ref(shift) : shift;
-    my $name;
-    {
+    my $name = do {
         no strict "refs";
-        $name = ${ $class . "::NAME" } or die $class . "::NAME not defined yet";
-    }
+        ${ $class . "::NAME" } or die $class . "::NAME not defined yet";
+    };
     for (@PATH) {
         return path($_)->child($name)->stringify if path($_)->child($name)->exists;
     }
