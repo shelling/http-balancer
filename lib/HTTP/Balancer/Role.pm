@@ -17,6 +17,17 @@ sub model {
     return $model;
 }
 
+=head2 config()
+
+return the singleton of the configuration.
+
+=cut
+
+use HTTP::Balancer::Config;
+sub config {
+    return HTTP::Balancer::Config->instance;
+}
+
 no Moose::Role;
 
 1;
