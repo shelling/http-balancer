@@ -16,7 +16,6 @@ requires        'MooseX::Storage';
 requires        'Namespace::Dispatch'   => '0.07';
 requires        'YAML::Any';
 requires        'Path::Tiny';
-requires        'File::Slurp';
 requires        'Text::Xslate';
 
 test_requires   'Test::More';

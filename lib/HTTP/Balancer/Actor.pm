@@ -5,7 +5,6 @@ use Path::Tiny;
 
 with qw(HTTP::Balancer::Role);
 
-use File::Slurp qw(slurp);
 use Text::Xslate;
 
 our @PATH = qw(
@@ -38,9 +37,10 @@ sub executable {
 
 sub template {
     my ($self, ) = @_;
+    state $result;
     no strict "refs";
-    my $result = slurp(\*{ref($self) . "::DATA"});
-    $result;
+    local $/ = undef;
+    $result //= readline *{ref($self) . "::DATA"};
 }
 
 sub render {
