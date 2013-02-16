@@ -1,5 +1,6 @@
 use Modern::Perl;
 use Test::More;
+use Test::Exception;
 use local::lib qw(local);
 
 BEGIN {
@@ -19,6 +20,12 @@ is (
     $any->model("Host"),
     "HTTP::Balancer::Model::Host",
     "modules have model(\$name) shortcut",
+);
+
+throws_ok (
+    sub { $any->model("None") },
+    qr{Can't locate HTTP\/Balancer\/Model\/None.pm in \@INC},
+    "must die if model not exists",
 );
 
 is (

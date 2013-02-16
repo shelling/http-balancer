@@ -14,6 +14,7 @@ sub model {
     my ($self, $name) = @_;
     my $model = "HTTP::Balancer::Model::$name";
     eval qq{use $model};
+    die $@ if $@;
     return $model;
 }
 
