@@ -1,5 +1,22 @@
 package HTTP::Balancer::Role;
 
+=head1 NAME
+
+HTTP::Balancer::Role - base of all roles in HTTP::Balancer
+
+=head1 SYNOPSIS
+
+    package HTTP::Balancer::Role::Any;
+    use Modern::Perl;
+    use Moose::Role;
+    with qw(HTTP::Balancer::Role);
+
+    # your code goes here
+
+    no Moose::Role;
+
+=cut
+
 use Modern::Perl;
 
 use Moose::Role;

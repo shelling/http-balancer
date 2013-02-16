@@ -22,3 +22,33 @@ around run => sub {
 no Moose::Role;
 
 1;
+__END__
+
+=head1 NAME
+
+HTTP::Balancer::Role::Stem - subcommand presenter for command handlers
+
+=head1 SYNOPSIS
+
+    package HTTP::Balancer::Command::Any::Foo;
+
+    package HTTP::Balancer::Command::Any::Bar;
+
+    package HTTP::Balancer::Command::Any;
+    use Modern::Perl;
+    use Moose;
+    with qw( HTTP::Balancer::Role::Command
+             HTTP::Balancer::Role::Stem );
+
+    sub run {
+    }
+
+=head1 DESCRIPTION
+
+    $ http-balancer any
+    usage: http-balancer any [subcommands]
+    Available subcommands:
+        foo
+        bar
+
+=cut

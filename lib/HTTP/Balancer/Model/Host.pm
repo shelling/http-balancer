@@ -26,3 +26,16 @@ sub backends {
 }
 
 1;
+__END__
+
+=head1 NAME
+
+HTTP::Balancer::Model::Host
+
+=head1 SYNOPSIS
+
+    use Moose;
+    with qw(HTTP::Balancer::Role);
+    $self->model("Host")
+
+=cut

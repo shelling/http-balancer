@@ -11,6 +11,8 @@ with qw( HTTP::Balancer::Role
 
 =head1 NAME
 
+HTTP::Balancer::Role::Command - the mixin for command handlers
+
 =head1 SYNOPSIS
 
     package HTTP::Balancer::Command::SomeCommand;

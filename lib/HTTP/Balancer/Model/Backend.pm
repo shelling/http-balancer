@@ -25,3 +25,16 @@ has host_id => (
 );
 
 1;
+__END__
+
+=head1 NAME
+
+HTTP::Balancer::Model::Backend
+
+=head1 SYNOPSIS
+
+    use Moose;
+    with qw(HTTP::Balancer::Role);
+    $self->model("Backend");
+
+=cut
