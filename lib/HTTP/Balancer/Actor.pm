@@ -24,6 +24,15 @@ sub stop {
     die "you do not implement the stop() for $class";
 }
 
+sub kill {
+    my ($self, $pid) = @_;
+    if (kill 0, $pid) {
+        kill 15, $pid;
+    } else {
+        warn "could not kill $pid";
+    }
+}
+
 sub executable {
     my $class = ref($_[0]) ? ref(shift) : shift;
     my $name = do {

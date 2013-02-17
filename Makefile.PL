@@ -21,6 +21,7 @@ requires        'Text::Xslate';
 test_requires   'Test::More';
 test_requires   'Test::Exception';
 test_requires   'local::lib';
+test_requires   'Proc::ProcessTable';
 
 tests           't/*.t t/*/*.t';
 author_tests    'xt';
