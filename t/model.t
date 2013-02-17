@@ -6,6 +6,12 @@ BEGIN {
     use_ok 'HTTP::Balancer::Model';
 }
 
+is_deeply (
+    HTTP::Balancer::Model->models,
+    [qw(backend host)],
+    "make sure all current models defined",
+);
+
 $HTTP::Balancer::Model::dbpath = "/tmp/http-balancer";
 
 {

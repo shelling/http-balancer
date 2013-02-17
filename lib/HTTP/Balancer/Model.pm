@@ -22,6 +22,18 @@ our $dbpath = "/var/lib/http-balancer/";
 
 =head1 FUNCTIONS AND METHODS
 
+=head2 models
+
+returns the list of last name of HTTP::Balancer::Model::*
+
+=cut
+
+sub models {
+    my $class = ref($_[0]) ? ref(shift) : shift;
+    require Namespace::Dispatch;
+    Namespace::Dispatch::leaves($class);
+}
+
 =head2 model_name
 
 class method and instance method
