@@ -4,6 +4,9 @@ use Test::Exception;
 use local::lib 'local';
 use lib qw(t/lib);
 
+use Proc::ProcessTable;
+use Path::Tiny;
+
 BEGIN {
     use_ok 'HTTP::Balancer::Actor';
 }
@@ -32,6 +35,44 @@ throws_ok (
     qr{HTTP::Balancer::Actor::Foo::NAME not defined yet},
     "die if not provided \$NAME",
 );
+
+{
+    my $test_pidfile = "/tmp/http-balancer-test.pid";
+
+    path($test_pidfile)->remove;
+
+    my $script = qq[
+        use Path::Tiny;
+        path("$test_pidfile")->spew(\$\$);
+        while (1) {
+        }
+    ];
+
+    system("perl -E '$script' &");
+
+    while (1) {
+        last if path($test_pidfile)->exists;
+    }
+
+    my $test_pid = path($test_pidfile)->slurp;
+
+    is (
+        scalar(grep { $_->pid == $test_pid } @{Proc::ProcessTable->new->table}),
+        1,
+        "process exists before kill",
+    );
+
+    HTTP::Balancer::Actor::Foo->new->kill($test_pid);
+
+    is (
+        scalar(grep { $_->pid == $test_pid } @{Proc::ProcessTable->new->table}),
+        0,
+        "process do not exist after kill",
+    );
+
+    path($test_pidfile)->remove;
+
+}
 
 use HTTP::Balancer::Actor::Buzz;
 
