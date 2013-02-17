@@ -11,7 +11,7 @@ BEGIN {
 
 SKIP: {
 
-skip "no nginx installed", 1
+skip "no nginx installed", 3
 unless HTTP::Balancer::Actor::Nginx->executable;
 
 
