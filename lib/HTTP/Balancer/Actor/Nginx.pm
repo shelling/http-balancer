@@ -15,8 +15,8 @@ sub start {
 }
 
 sub stop {
-    my ($self, $pidfilename) = @_;
-    my $pidfile = path($pidfilename);
+    my ($self, %params) = @_;
+    my $pidfile = path($params{pidfile});
     $pidfile->exists ? $self->kill($pidfile->slurp) : say "not running";
 }
 
@@ -30,7 +30,20 @@ HTTP::Balancer::Actor::Nginx - the Nginx actor
 
 =head1 SYNOPSIS
 
-    HTTP::Balancer::Actor::Nginx->start;
+    my $actor = HTTP::Balancer::Actor::Nginx->new;
+
+    $actor->start(
+        port    => 80,
+        pidfile => "/tmp/http-balancer.pid",
+        hosts   => [
+            "192.168.1.1",
+            "192.168.1.2",
+        ],
+    );
+
+    $actor->stop(
+        pidfile => "/tmp/http-balancer.pid",
+    );
 
 =cut
 

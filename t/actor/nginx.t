@@ -47,7 +47,7 @@ is (
     "process is running",
 );
 
-$actor->stop($pidfilename);
+$actor->stop(pidfile => $pidfilename);
 
 is (
     scalar(grep {$_->pid == $pid} @{Proc::ProcessTable->new->table}),
