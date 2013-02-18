@@ -7742,6 +7742,67 @@
          "target" : "Test::Warn",
          "version" : "0.24"
       },
+      "Text::Aligner" : {
+         "dist" : "Text-Aligner-0.07",
+         "mymeta" : {
+            "abstract" : "Align text in columns",
+            "author" : [
+               "Anno Siegel (siegel@zrz.tu-berlin.de)"
+            ],
+            "dynamic_config" : 0,
+            "generated_by" : "ExtUtils::MakeMaker version 6.56, CPAN::Meta::Converter version 2.120921",
+            "license" : [
+               "unknown"
+            ],
+            "meta-spec" : {
+               "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+               "version" : "2"
+            },
+            "name" : "Text-Aligner",
+            "no_index" : {
+               "directory" : [
+                  "t",
+                  "inc"
+               ]
+            },
+            "prereqs" : {
+               "build" : {
+                  "requires" : {
+                     "ExtUtils::MakeMaker" : "0"
+                  }
+               },
+               "configure" : {
+                  "requires" : {
+                     "ExtUtils::MakeMaker" : "0"
+                  }
+               },
+               "runtime" : {
+                  "requires" : {
+                     "Term::ANSIColor" : "2.01",
+                     "Test::More" : "0"
+                  }
+               }
+            },
+            "release_status" : "stable",
+            "version" : "0.07"
+         },
+         "name" : "Text::Aligner",
+         "pathname" : "A/AN/ANNO/Text-Aligner-0.07.tar.gz",
+         "provides" : {
+            "Text::Aligner" : {
+               "file" : "Text/Aligner.pm",
+               "version" : "0.07"
+            },
+            "Text::Aligner::Auto" : {
+               "file" : "Text/Aligner.pm"
+            },
+            "Text::Aligner::MaxKeeper" : {
+               "file" : "Text/Aligner.pm"
+            }
+         },
+         "target" : "Text::Aligner",
+         "version" : "0.07"
+      },
       "Text::Diff" : {
          "dist" : "Text-Diff-1.41",
          "mymeta" : {
@@ -7812,6 +7873,81 @@
          },
          "target" : "Text::Diff",
          "version" : "1.41"
+      },
+      "Text::Table" : {
+         "dist" : "Text-Table-1.126",
+         "mymeta" : {
+            "abstract" : "Organize Data in Tables",
+            "author" : [
+               "Shlomi Fish <shlomif@cpan.org>"
+            ],
+            "dynamic_config" : 0,
+            "generated_by" : "Module::Build version 0.4003, CPAN::Meta::Converter version 2.120921",
+            "keywords" : [
+               "art",
+               "ascii",
+               "asciiart",
+               "borders",
+               "table",
+               "text",
+               "unicode"
+            ],
+            "license" : [
+               "bsd"
+            ],
+            "meta-spec" : {
+               "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+               "version" : "2"
+            },
+            "name" : "Text-Table",
+            "prereqs" : {
+               "build" : {
+                  "requires" : {
+                     "List::Util" : "0",
+                     "Test::More" : "0"
+                  }
+               },
+               "configure" : {
+                  "requires" : {
+                     "Module::Build" : "0.36"
+                  }
+               },
+               "runtime" : {
+                  "requires" : {
+                     "Text::Aligner" : "0.05",
+                     "strict" : "0",
+                     "warnings" : "0"
+                  }
+               }
+            },
+            "provides" : {
+               "Text::Table" : {
+                  "file" : "lib/Text/Table.pm",
+                  "version" : "1.126"
+               }
+            },
+            "release_status" : "stable",
+            "resources" : {
+               "homepage" : "http://www.shlomifish.org/open-source/projects/docmake/",
+               "license" : [
+                  "http://www.opensource.org/licenses/bsd-license.php"
+               ],
+               "repository" : {
+                  "url" : "https://github.com/shlomif/Text-Table"
+               }
+            },
+            "version" : "1.126"
+         },
+         "name" : "Text::Table",
+         "pathname" : "S/SH/SHLOMIF/Text-Table-1.126.tar.gz",
+         "provides" : {
+            "Text::Table" : {
+               "file" : "Text/Table.pm",
+               "version" : "1.126"
+            }
+         },
+         "target" : "Text::Table",
+         "version" : "1.126"
       },
       "Text::Xslate" : {
          "dist" : "Text-Xslate-1.6002",
