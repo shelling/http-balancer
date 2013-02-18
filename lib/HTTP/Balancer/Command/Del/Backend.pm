@@ -9,6 +9,10 @@ has name => (
     default => sub { shift->argv(2) },
 );
 
+sub ordinary_args {
+    qw(name);
+}
+
 sub run {
     my ($self, ) = @_;
 

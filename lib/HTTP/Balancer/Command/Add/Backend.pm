@@ -27,6 +27,10 @@ has address => (
     documentation => "the address of this backend",
 );
 
+sub ordinary_args {
+    qw(name)
+};
+
 sub run {
     my ($self, ) = @_;
 
