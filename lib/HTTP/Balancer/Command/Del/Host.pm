@@ -16,6 +16,8 @@ sub ordinary_args {
 sub run {
     my ($self, ) = @_;
 
+    my $host = $self->model("Host")->find(name => $self->name);
+    $host ? $host->remove : say "not found";
 }
 
 1;
