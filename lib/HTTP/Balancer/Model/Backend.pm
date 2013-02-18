@@ -14,6 +14,11 @@ has id => (
     isa => "Num",
 );
 
+has name => (
+    is  => "rw",
+    isa => "Str",
+);
+
 has address => (
     is  => "rw",
     isa => "Str",

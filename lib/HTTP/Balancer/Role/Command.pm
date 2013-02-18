@@ -50,6 +50,22 @@ sub command_name {
     return lc($ref);
 }
 
+=head2 argv($position)
+
+helper.
+
+return the ordinary argument at $position or exit with help text.
+
+=cut
+
+sub argv {
+    my ($self, $position) = @_;
+    $self->extra_argv->[$position] or do {
+        print $self->usage;
+        exit;
+    }
+}
+
 no Moose::Role;
 
 1;

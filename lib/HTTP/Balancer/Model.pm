@@ -2,6 +2,7 @@ package HTTP::Balancer::Model;
 use Modern::Perl;
 use Moose;
 use File::Spec;
+use Path::Tiny qw(!path);
 
 with qw(HTTP::Balancer::Role);
 
@@ -13,14 +14,30 @@ HTTP::Balancer::Model - the base class of models of HTTP::Balancer
 
     package HTTP::Balancer::Model::Foo;
     use Modern::Perl;
+
     use Moose;
     extends qw(HTTP::Balancer::Model);
+
+    use MoooseX::Storage;
+    with Storage(format => 'YAML', io => 'File');
 
 =cut
 
 our $dbpath = "/var/lib/http-balancer/";
 
 =head1 FUNCTIONS AND METHODS
+
+=head2 models
+
+returns the list of last name of HTTP::Balancer::Model::*
+
+=cut
+
+sub models {
+    my $class = ref($_[0]) ? ref(shift) : shift;
+    require Namespace::Dispatch;
+    Namespace::Dispatch::leaves($class);
+}
 
 =head2 model_name
 
@@ -152,22 +169,17 @@ sub where {
     } $self->all;
 }
 
+=head2 remove
+
+remove the instance from disk.
+
+=cut
+
+sub remove {
+    my ($self, ) = @_;
+    Path::Tiny::path($self->path)->remove;
+}
+
 1;
 __END__
 
-=head1 NAME
-
-HTTP::Balancer::Model - the base class of models of HTTP::Balancer
-
-=head1 SYNOPSIS
-
-    package HTTP::Balancer::Model::Foo;
-    use Modern::Perl;
-
-    use Moose;
-    extends qw(HTTP::Balancer::Model);
-
-    use MoooseX::Storage;
-    with Storage(format => 'YAML', io => 'File');
-
-=cut

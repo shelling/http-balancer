@@ -3,10 +3,16 @@ use Modern::Perl;
 use Moose;
 with qw(HTTP::Balancer::Role::Command);
 
+has name => (
+    is      => "rw",
+    traits  => [ 'NoGetopt' ],
+    default => sub { shift->argv(2) },
+);
+
 sub run {
     my ($self, ) = @_;
     $self->model("Host")
-         ->new(name => $self->extra_argv->[2])
+         ->new(name => $self->name)
          ->save;
 }
 
