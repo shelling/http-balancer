@@ -6,13 +6,7 @@ with qw(HTTP::Balancer::Role::Command);
 has name => (
     is      => "rw",
     traits  => [ 'NoGetopt' ],
-    default => sub {
-        my $self = shift;
-        $self->extra_argv->[2] or do {
-            print $self->usage;
-            exit;
-        }
-    },
+    default => sub { shift->argv(2) },
 );
 
 sub run {
