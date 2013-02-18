@@ -2,6 +2,7 @@ package HTTP::Balancer::Model;
 use Modern::Perl;
 use Moose;
 use File::Spec;
+use Path::Tiny qw(!path);
 
 with qw(HTTP::Balancer::Role);
 
@@ -166,6 +167,17 @@ sub where {
     grep {
         $_->$attr eq $value
     } $self->all;
+}
+
+=head2 remove
+
+remove the instance from disk.
+
+=cut
+
+sub remove {
+    my ($self, ) = @_;
+    Path::Tiny::path($self->path)->remove;
 }
 
 1;
