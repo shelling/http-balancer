@@ -14,10 +14,10 @@ sub run {
     my $table = Text::Table->new(@columns);
 
     $table->load(
-        map {
-            my $host = $_;
-            [map { $host->$_ } @columns]
-        } $self->model("Host")->all
+        $self->model("Host")->all(sub {
+            my $host = shift;
+            [ map { $host->$_ } @columns ]
+        })
     );
 
     print $table;

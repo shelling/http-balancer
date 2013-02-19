@@ -16,10 +16,10 @@ sub run {
     my $table = Text::Table->new(@columns);
 
     $table->load(
-        map {
-            my $backend = $_;
-            [map { $backend->$_ } @columns]
-        } $self->model("Backend")->all
+        $self->model("Backend")->all(sub {
+            my $backend = shift;
+            [ map { $backend->$_ } @columns]
+        })
     );
 
     print $table;
