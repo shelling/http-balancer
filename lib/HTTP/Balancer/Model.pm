@@ -195,6 +195,17 @@ sub columns {
 
 }
 
+=head2 slice(@columns)
+
+returns attributes slice
+
+=cut
+
+sub slice {
+    my ($self, @columns) = @_;
+    map { $self->$_ } @columns;
+}
+
 1;
 __END__
 

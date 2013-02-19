@@ -15,10 +15,9 @@ sub run {
     my $table = Text::Table->new(@columns);
 
     $table->load(
-        $self->model("Backend")->all(sub {
-            my $backend = shift;
-            [ map { $backend->$_ } @columns]
-        })
+        $self
+        ->model("Backend")
+        ->all(sub { [ shift->slice(@columns) ] })
     );
 
     print $table;
