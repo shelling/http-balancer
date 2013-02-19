@@ -126,16 +126,19 @@ sub save {
     $self->store($self->path);
 }
 
-=head2 all
+=head2 all(\&closure)
 
 class method
 
 returns all object restored from disk
 
+call \&closure on each instance if given.
+
 =cut
 
 sub all {
-    my ($self, ) = @_;
+    my ($self, $closure) = @_;
+    map { $closure ? $closure->($_) : $_ }
     map { $self->load($_) } $self->glob;
 }
 
