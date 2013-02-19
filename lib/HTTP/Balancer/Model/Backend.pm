@@ -24,6 +24,11 @@ has address => (
     isa => "Str",
 );
 
+has port => (
+    is  => "rw",
+    isa => "Str"
+);
+
 has host_id => (
     is  => "rw",
     isa => "Str",

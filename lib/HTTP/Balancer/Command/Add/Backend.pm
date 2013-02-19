@@ -27,6 +27,15 @@ has address => (
     documentation => "the address of this backend",
 );
 
+has port => (
+    is            => "rw",
+    isa           => "Num",
+    traits        => ['Getopt'],
+    cmd_aliases   => 'p',
+    default       => "80",
+    documentation => "the port of this backend listens to. default: 80",
+);
+
 sub ordinary_args {
     qw(name)
 };
@@ -40,6 +49,7 @@ sub run {
          ->new(
              name    => $self->name,
              address => $self->address,
+             port    => $self->port,
              host_id => $host->id,
          )
          ->save;
