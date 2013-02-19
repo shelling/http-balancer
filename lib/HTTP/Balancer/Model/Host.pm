@@ -9,12 +9,12 @@ with Storage(
     io      => 'File',
 );
 
-has id => (
+has [qw(id port)] => (
     is  => "rw",
     isa => "Num",
 );
 
-has name => (
+has [qw(name fullname address)] => (
     is  => "rw",
     isa => "Str",
 );

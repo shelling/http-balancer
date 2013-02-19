@@ -9,15 +9,48 @@ has name => (
     default => sub { shift->argv(2) },
 );
 
+has fullname => (
+    is              => "rw",
+    isa             => "Str",
+    metaclass       => "Getopt",
+    cmd_aliases     => "f",
+    default         => "*",
+    documentation   => "full virtual host name used to filter requests. default: *",
+);
+
+has address => (
+    is              => "rw",
+    isa             => "Str",
+    metaclass       => "Getopt",
+    cmd_aliases     => "a",
+    default         => "0.0.0.0",
+    documentation   => "the address this virtual host listens to. default: 0.0.0.0",
+);
+
+has port => (
+    is              => "rw",
+    isa             => "Str",
+    metaclass       => "Getopt",
+    cmd_aliases     => "p",
+    default         => "80",
+    documentation   => "the TCP port this host listens to. default: 80",
+);
+
 sub ordinary_args {
     qw(name);
 }
 
 sub run {
     my ($self, ) = @_;
-    $self->model("Host")
-         ->new(name => $self->name)
-         ->save;
+
+    my @columns = grep {!/^id$/} $self->model("Host")->columns;
+
+    my %params; @params{@columns} = @$self{@columns};
+
+    $self
+    ->model("Host")
+    ->new(%params)
+    ->save;
 }
 
 1;
