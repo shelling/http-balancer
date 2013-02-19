@@ -16,12 +16,13 @@ requires        'MooseX::Storage';
 requires        'Namespace::Dispatch'   => '0.07';
 requires        'YAML::Any';
 requires        'Path::Tiny';
-requires        'File::Slurp';
 requires        'Text::Xslate';
+requires        'Text::Table';
 
 test_requires   'Test::More';
 test_requires   'Test::Exception';
 test_requires   'local::lib';
+test_requires   'Proc::ProcessTable';
 
 tests           't/*.t t/*/*.t';
 author_tests    'xt';

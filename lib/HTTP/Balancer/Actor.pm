@@ -5,7 +5,6 @@ use Path::Tiny;
 
 with qw(HTTP::Balancer::Role);
 
-use File::Slurp qw(slurp);
 use Text::Xslate;
 
 our @PATH = qw(
@@ -25,13 +24,21 @@ sub stop {
     die "you do not implement the stop() for $class";
 }
 
+sub kill {
+    my ($self, $pid) = @_;
+    if (kill 0, $pid) {
+        kill 15, $pid;
+    } else {
+        warn "could not kill $pid";
+    }
+}
+
 sub executable {
     my $class = ref($_[0]) ? ref(shift) : shift;
-    my $name;
-    {
+    my $name = do {
         no strict "refs";
-        $name = ${ $class . "::NAME" } or die $class . "::NAME not defined yet";
-    }
+        ${ $class . "::NAME" } or die $class . "::NAME not defined yet";
+    };
     for (@PATH) {
         return path($_)->child($name)->stringify if path($_)->child($name)->exists;
     }
@@ -39,9 +46,10 @@ sub executable {
 
 sub template {
     my ($self, ) = @_;
+    state $result;
     no strict "refs";
-    my $result = slurp(\*{ref($self) . "::DATA"});
-    $result;
+    local $/ = undef;
+    $result //= readline *{ref($self) . "::DATA"};
 }
 
 sub render {

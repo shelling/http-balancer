@@ -8,6 +8,14 @@ with qw( HTTP::Balancer::Role::Command );
 
 sub run {
     my ($self, ) = @_;
+
+    $self
+    ->actor("Nginx")
+    ->new
+    ->start(
+        pidfile => $self->config->pidfile,
+        hosts   => [$self->model("Host")->all(sub { shift->hash })],
+    );
 }
 
 1;

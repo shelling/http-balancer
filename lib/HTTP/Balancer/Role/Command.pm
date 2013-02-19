@@ -9,7 +9,17 @@ use Namespace::Dispatch;
 with qw( HTTP::Balancer::Role
          MooseX::Getopt::Dashes );
 
+around _usage_format => sub {
+    my $orig = shift;
+    my $self = shift;
+    my $command_name = $self->command_name;
+    my $ordinary_args = join " ", map { "<$_>" } $self->ordinary_args;
+    "usage: %c $command_name $ordinary_args %o";
+};
+
 =head1 NAME
+
+HTTP::Balancer::Role::Command - the mixin for command handlers
 
 =head1 SYNOPSIS
 
@@ -46,6 +56,34 @@ sub command_name {
     $ref =~ s{HTTP::Balancer::Command::}{};
     $ref =~ s{::}{ }g;
     return lc($ref);
+}
+
+=head2 ordinary_args
+
+returns the ordinary arguments for arbitrary command handler.
+
+the method is here to be overrided and returns empty list by default.
+
+=cut
+
+sub ordinary_args {
+    qw();
+}
+
+=head2 argv($position)
+
+helper.
+
+return the ordinary argument at $position or exit with help text.
+
+=cut
+
+sub argv {
+    my ($self, $position) = @_;
+    $self->extra_argv->[$position] or do {
+        print $self->usage;
+        exit;
+    }
 }
 
 no Moose::Role;

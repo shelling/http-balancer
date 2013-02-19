@@ -4,6 +4,8 @@ use Moose;
 with qw( HTTP::Balancer::Role::Command
          HTTP::Balancer::Role::Stem );
 
+use Text::Table;
+
 sub run {
     my ($self, ) = @_;
 }

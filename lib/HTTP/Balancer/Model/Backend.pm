@@ -14,9 +14,19 @@ has id => (
     isa => "Num",
 );
 
+has name => (
+    is  => "rw",
+    isa => "Str",
+);
+
 has address => (
     is  => "rw",
     isa => "Str",
+);
+
+has port => (
+    is  => "rw",
+    isa => "Str"
 );
 
 has host_id => (
@@ -25,3 +35,16 @@ has host_id => (
 );
 
 1;
+__END__
+
+=head1 NAME
+
+HTTP::Balancer::Model::Backend
+
+=head1 SYNOPSIS
+
+    use Moose;
+    with qw(HTTP::Balancer::Role);
+    $self->model("Backend");
+
+=cut

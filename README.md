@@ -22,11 +22,13 @@ Add your virtual hosts and backends
 
     # http-balancer add host www
 
-    # http-balancer add backend 192.168.1.1
+    # http-balancer add backend web1 --address 192.168.1.1 --host www
 
-List your hosts with their backends
+List your hosts and backends
 
     # http-balancer list host
+
+    # http-balancer list backend
 
 Fire the balancer up
 

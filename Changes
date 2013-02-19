@@ -1,4 +1,5 @@
 Revision history for Perl extension HTTP::Balancer
 
-0.01    Tue Jan  8 17:22:50 2013
+0.0.1   Tue Feb 19 20:00:58 CST 2013
+        - works with Nginx
         - original version

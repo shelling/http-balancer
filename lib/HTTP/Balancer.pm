@@ -1,6 +1,6 @@
 package HTTP::Balancer;
 
-our $VERSION = '0.01';
+our $VERSION = '0.0.1';
 
 use Modern::Perl;
 
