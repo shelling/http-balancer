@@ -180,7 +180,7 @@ remove the instance from disk.
 
 sub remove {
     my ($self, ) = @_;
-    Path::Tiny::path($self->path)->remove;
+    Path::Tiny::path($self->path)->remove or die $@;
 }
 
 =head2 columns
