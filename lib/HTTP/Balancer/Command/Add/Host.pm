@@ -14,8 +14,8 @@ has fullname => (
     isa             => "Str",
     metaclass       => "Getopt",
     cmd_aliases     => "f",
-    default         => "*",
-    documentation   => "full virtual host name used to filter requests. default: *",
+    default         => "",
+    documentation   => "full virtual host name used to filter requests. default: empty string. make sure only one host has empty fullname.",
 );
 
 has address => (
