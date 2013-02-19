@@ -23,9 +23,14 @@ $actor->start(
     pidfile => $pidfilename,
     port    => 8080, 
     hosts   => [
-        "localhost:3000",
-        "localhost:3001",
-        "localhost:3002",
+        {
+            name     => "www",
+            backends => [
+                "localhost:3000",
+                "localhost:3001",
+                "localhost:3002",
+            ],
+        }
     ]
 );
 

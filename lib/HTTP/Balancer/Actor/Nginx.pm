@@ -69,9 +69,11 @@ http {
     gzip  on;
     gzip_disable "MSIE [1-6]\.(?!.*SV1)";
 
+    : for $hosts -> $host {
+
     upstream backend {
-        : for $hosts -> $host {
-        server <: $host :>;
+        : for $host.backends -> $backend {
+        server <: $backend :>;
         : }
     }
 
@@ -87,5 +89,7 @@ http {
             proxy_pass http://backend;
         }
     }
+
+    : }
 
 }
