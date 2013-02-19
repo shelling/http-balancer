@@ -19,6 +19,11 @@ has [qw(name fullname address)] => (
     isa => "Str",
 );
 
+before remove => sub {
+    my $self = shift;
+    map { say $_->remove } $self->backends;
+};
+
 sub backends {
     my ($self, ) = @_;
     $self->model("Backend")
