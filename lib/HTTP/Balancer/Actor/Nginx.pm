@@ -33,11 +33,10 @@ HTTP::Balancer::Actor::Nginx - the Nginx actor
     my $actor = HTTP::Balancer::Actor::Nginx->new;
 
     $actor->start(
-        port    => 80,
         pidfile => "/tmp/http-balancer.pid",
         hosts   => [
-            "192.168.1.1",
-            "192.168.1.2",
+            $host1->hash,
+            $host2->hash,
         ],
     );
 

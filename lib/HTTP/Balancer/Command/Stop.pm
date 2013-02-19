@@ -8,6 +8,12 @@ with qw( HTTP::Balancer::Role::Command );
 
 sub run {
     my ($self, ) = @_;
+
+    $self
+    ->actor("Nginx")
+    ->new
+    ->stop(pidfile => $self->config->pidfile);
+
 }
 
 1;
