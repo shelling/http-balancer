@@ -6,9 +6,10 @@ with qw(HTTP::Balancer::Role::Command);
 sub run {
     my ($self, ) = @_;
 
-    my @columns = qw(
-        id
-        name
+    my @columns = (
+        "id",
+        "name",
+        grep {!/^(id|name)$/} $self->model("Host")->columns
     );
 
     my $table = Text::Table->new(@columns);

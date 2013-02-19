@@ -9,8 +9,7 @@ sub run {
     my @columns = (
         "id",
         "name",
-        "address",
-        "host_id",
+        grep {!/^(id|name)$/} $self->model("Backend")->columns
     );
 
     my $table = Text::Table->new(@columns);

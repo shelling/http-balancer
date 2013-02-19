@@ -183,6 +183,18 @@ sub remove {
     Path::Tiny::path($self->path)->remove;
 }
 
+=head2 columns
+
+list names of all columns of current Model.
+
+=cut
+
+sub columns {
+    my ($self, ) = @_;
+    map { $_->name } $self->meta->get_all_attributes;
+
+}
+
 1;
 __END__
 
