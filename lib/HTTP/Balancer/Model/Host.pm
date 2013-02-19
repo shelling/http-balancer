@@ -34,7 +34,10 @@ sub hash {
     my ($self, ) = @_;
     return {
         name        => $self->name,
-        backends    => [map {$_->address} $self->backends],
+        fullname    => $self->fullname,
+        address     => $self->address,
+        port        => $self->port,
+        backends    => [map {$_->address . ":" . $_->port} $self->backends],
     };
 }
 

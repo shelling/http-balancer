@@ -21,10 +21,12 @@ path($pidfilename)->remove if path($pidfilename)->exists;
 my $actor = HTTP::Balancer::Actor::Nginx->new;
 $actor->start(
     pidfile => $pidfilename,
-    port    => 8080, 
     hosts   => [
         {
             name     => "www",
+            address  => "0.0.0.0",
+            port     => 8080,
+            fullname => "",
             backends => [
                 "localhost:3000",
                 "localhost:3001",

@@ -71,14 +71,19 @@ http {
 
     : for $hosts -> $host {
 
-    upstream backend {
+    upstream <: $host.name :> {
         : for $host.backends -> $backend {
         server <: $backend :>;
         : }
     }
 
     server {
-        listen <: $port :>;
+        listen <: $host.address :>:<: $host.port :>;
+        : if $host.fullname {
+        server_name <: $host.fullname :>;
+        : } else {
+        server_name _;
+        : }
 
         location / {
             try_files $uri @balancer;
@@ -86,7 +91,7 @@ http {
         }
 
         location @balancer {
-            proxy_pass http://backend;
+            proxy_pass http://<: $host.name :>;
         }
     }
 
