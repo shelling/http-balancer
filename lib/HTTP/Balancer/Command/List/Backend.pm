@@ -3,8 +3,6 @@ use Modern::Perl;
 use Moose;
 with qw(HTTP::Balancer::Role::Command);
 
-use Text::Table;
-
 sub run {
     my ($self, ) = @_;
 

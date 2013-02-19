@@ -5,12 +5,22 @@ with qw(HTTP::Balancer::Role::Command);
 
 sub run {
     my ($self, ) = @_;
-    map {
-        say $_->name;
-        for my $backend ($_->backends) {
-            say "    ", $backend->address;
-        }
-    } $self->model("Host")->all;
+
+    my @columns = qw(
+        id
+        name
+    );
+
+    my $table = Text::Table->new(@columns);
+
+    $table->load(
+        map {
+            my $host = $_;
+            [map { $host->$_ } @columns]
+        } $self->model("Host")->all
+    );
+
+    print $table;
 }
 
 1;
