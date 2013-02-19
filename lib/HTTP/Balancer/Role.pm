@@ -21,7 +21,7 @@ use Modern::Perl;
 
 use Moose::Role;
 
-=head2 model()
+=head2 model($name)
 
 given the last name of a model, returns the whole name of the model, and requires this model.
 
@@ -33,6 +33,18 @@ sub model {
     eval qq{use $model};
     die $@ if $@;
     return $model;
+}
+
+=head2 actor($name)
+
+=cut
+
+sub actor {
+    my ($self, $name) = @_;
+    my $actor = "HTTP::Balancer::Actor::$name";
+    eval qq{use $actor};
+    die $@ if $@;
+    return $actor;
 }
 
 =head2 config()
