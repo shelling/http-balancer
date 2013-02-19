@@ -25,6 +25,14 @@ sub backends {
          ->where(host_id => $self->id);
 }
 
+sub hash {
+    my ($self, ) = @_;
+    return {
+        name        => $self->name,
+        backends    => [map {$_->address} $self->backends],
+    };
+}
+
 1;
 __END__
 
