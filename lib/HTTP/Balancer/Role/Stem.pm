@@ -2,21 +2,18 @@ package HTTP::Balancer::Role::Stem;
 use Modern::Perl;
 use Moose::Role;
 
-with qw( HTTP::Balancer::Role );
+with qw( HTTP::Balancer::Role::Command );
 
-around run => sub {
-    my $orig = shift;
+around _getopt_get_options => sub {
+   my ($orig, $self, $params, $opt_spec) = @_;
+   my $command_name = $self->command_name;
+   my $subcommands  = join(" | ", @{$self->leaves});
+   Getopt::Long::Descriptive::describe_options("usage: %c $command_name [ $subcommands ]");
+};
+
+before run => sub {
     my $self = shift;
-
-    $self->$orig(@_);
-
-    my $handler = $self->command_name;
-    say "usage: http-balancer $handler [subcommands]";
-
-    say "Available subcommands:";
-    for (@{ref($self)->leaves}) {
-        say "       ", $_;
-    }
+    $self->usage->die();
 };
 
 no Moose::Role;

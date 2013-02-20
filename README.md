@@ -20,7 +20,7 @@ Before everything, you must initialize HTTP::Balancer.
 
 Add your virtual hosts and backends
 
-    # http-balancer add host www
+    # http-balancer add host www --fullname www.example.com
 
     # http-balancer add backend web1 --address 192.168.1.1 --host www
 
@@ -30,13 +30,27 @@ List your hosts and backends
 
     # http-balancer list backend
 
+Delete host and its backends
+
+    # http-balancer del host www
+
+Or only delete a backend
+
+    # http-balancer del backend web1
+
 Fire the balancer up
 
     # http-balancer start
 
+Get its status
+
+    # http-balancer status
+
 Stop the balancer
 
     # http-balancer stop
+
+Every command can show its usage text with `--help` options
 
 ## Authors
 

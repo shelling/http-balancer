@@ -80,10 +80,7 @@ return the ordinary argument at $position or exit with help text.
 
 sub argv {
     my ($self, $position) = @_;
-    $self->extra_argv->[$position] or do {
-        print $self->usage;
-        exit;
-    }
+    $self->extra_argv->[$position] or $self->usage->die;
 }
 
 no Moose::Role;

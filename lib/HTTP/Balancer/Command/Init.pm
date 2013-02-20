@@ -12,13 +12,23 @@ sub run {
     my ($self, ) = @_;
 
     require HTTP::Balancer::Model;
-    my $dbpath = path($HTTP::Balancer::Model::dbpath);
-    if ($dbpath->exists) {
-        say $dbpath->stringify . "has existed.";
-    } else {
-        say "create " . $dbpath->stringify;
-        $dbpath->mkpath({user => "root"}) unless $dbpath->exists;
+    $self->mkpath( map { $_->model_dir } HTTP::Balancer::Model->models );
+}
+
+sub mkpath {
+    my ($self, @path) = @_;
+
+    for my $path (map { path($_) } @path) {
+        if ($path->exists) {
+            say "$path has existed.";
+            $path->mkpath;
+        } else {
+            say "create $path";
+            $path->mkpath;
+        }
     }
+
+    $self;
 }
 
 1;

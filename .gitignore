@@ -12,3 +12,4 @@ MANIFEST.bak
 MYMETA.*
 local
 .carton
+HTTP-Balancer-*.tar.gz

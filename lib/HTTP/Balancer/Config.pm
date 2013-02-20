@@ -3,9 +3,17 @@ use Modern::Perl;
 use Moose;
 use MooseX::Singleton;
 
-sub pidfile {
-    "/var/run/http-balancer.pid"
-}
+has dbpath => (
+    is      => "rw",
+    isa     => "Str",
+    default => "/var/lib/http-balancer/",
+);
+
+has pidfile => (
+    is      => "rw",
+    isa     => "Str",
+    default => "/var/run/http-balancer.pid",
+);
 
 1;
 __END__

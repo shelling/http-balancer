@@ -7,12 +7,12 @@ BEGIN {
 }
 
 is_deeply (
-    HTTP::Balancer::Model->models,
-    [qw(backend host)],
+    [HTTP::Balancer::Model->models],
+    [qw(HTTP::Balancer::Model::Backend HTTP::Balancer::Model::Host)],
     "make sure all current models defined",
 );
 
-$HTTP::Balancer::Model::dbpath = "/tmp/http-balancer";
+HTTP::Balancer::Config->instance->dbpath("/tmp/http-balancer");
 
 {
     package HTTP::Balancer::Model::Foo;

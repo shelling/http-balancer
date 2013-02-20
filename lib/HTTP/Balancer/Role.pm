@@ -29,6 +29,7 @@ given the last name of a model, returns the whole name of the model, and require
 
 sub model {
     my ($self, $name) = @_;
+    $name = ucfirst($name);
     my $model = "HTTP::Balancer::Model::$name";
     eval qq{use $model};
     die $@ if $@;
@@ -41,6 +42,7 @@ sub model {
 
 sub actor {
     my ($self, $name) = @_;
+    $name = ucfirst($name);
     my $actor = "HTTP::Balancer::Actor::$name";
     eval qq{use $actor};
     die $@ if $@;

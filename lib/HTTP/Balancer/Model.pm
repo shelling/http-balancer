@@ -21,10 +21,6 @@ HTTP::Balancer::Model - the base class of models of HTTP::Balancer
     use MoooseX::Storage;
     with Storage(format => 'YAML', io => 'File');
 
-=cut
-
-our $dbpath = "/var/lib/http-balancer/";
-
 =head1 FUNCTIONS AND METHODS
 
 =head2 models
@@ -36,7 +32,8 @@ returns the list of last name of HTTP::Balancer::Model::*
 sub models {
     my $class = ref($_[0]) ? ref(shift) : shift;
     require Namespace::Dispatch;
-    Namespace::Dispatch::leaves($class);
+    map { $class->model($_) }
+    @{Namespace::Dispatch::leaves($class)};
 }
 
 =head2 model_name
@@ -65,7 +62,7 @@ returns the directory store the entities of current model
 sub model_dir {
     my ($self, ) = @_;
     File::Spec->catdir(
-        $dbpath,
+        $self->config->dbpath,
         $self->model_name
     );
 }
