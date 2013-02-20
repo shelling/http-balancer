@@ -30,13 +30,21 @@ List your hosts and backends
 
     # http-balancer list backend
 
+Delete host and its backends
+
+    # http-balancer del host www
+
+Or only delete a backend
+
+    # http-balancer del backend web1
+
 Fire the balancer up
 
     # http-balancer start
 
 Get its status
 
-    $ http-balancer status
+    # http-balancer status
 
 Stop the balancer
 
