@@ -34,6 +34,15 @@ has host_id => (
     isa => "Str",
 );
 
+sub host {
+    my ($self, ) = @_;
+
+    $self
+    ->model("Host")
+    ->find(id => $self->host_id)
+    ->name;
+}
+
 1;
 __END__
 
