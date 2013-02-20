@@ -13,9 +13,9 @@ sub run {
 
     if ($pidfile->exists) {
         my ($pid, ) = $pidfile->lines({chomp => 1});
-        say "$0 is running. pid: $pid";
+        say "http-balancer is running. pid: $pid";
     } else {
-        say "$0 is stop";
+        say "http-balancer is stop";
     }
 }
 
