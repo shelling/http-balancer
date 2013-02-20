@@ -32,7 +32,8 @@ returns the list of last name of HTTP::Balancer::Model::*
 sub models {
     my $class = ref($_[0]) ? ref(shift) : shift;
     require Namespace::Dispatch;
-    Namespace::Dispatch::leaves($class);
+    map { $class->model($_) }
+    @{Namespace::Dispatch::leaves($class)};
 }
 
 =head2 model_name

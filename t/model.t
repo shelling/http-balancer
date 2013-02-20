@@ -7,8 +7,8 @@ BEGIN {
 }
 
 is_deeply (
-    HTTP::Balancer::Model->models,
-    [qw(backend host)],
+    [HTTP::Balancer::Model->models],
+    [qw(HTTP::Balancer::Model::Backend HTTP::Balancer::Model::Host)],
     "make sure all current models defined",
 );
 
