@@ -2,7 +2,7 @@ package HTTP::Balancer::Role::Stem;
 use Modern::Perl;
 use Moose::Role;
 
-with qw( HTTP::Balancer::Role );
+with qw( HTTP::Balancer::Role::Command );
 
 around run => sub {
     my $orig = shift;

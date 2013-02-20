@@ -1,8 +1,7 @@
 package HTTP::Balancer::Command::Del;
 use Modern::Perl;
 use Moose;
-with qw( HTTP::Balancer::Role::Command
-         HTTP::Balancer::Role::Stem );
+with qw( HTTP::Balancer::Role::Stem );
 
 sub run {
     my ($self, ) = @_;
