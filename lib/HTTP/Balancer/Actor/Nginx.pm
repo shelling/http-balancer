@@ -90,7 +90,10 @@ http {
         }
 
         location @balancer {
-            proxy_pass http://<: $host.name :>;
+            proxy_pass              http://<: $host.name :>;
+            proxy_next_upstream     error timeout invalid_header http_500;
+            proxy_connect_timeout   2;
+            proxy_set_header        Host $host;
         }
     }
 
