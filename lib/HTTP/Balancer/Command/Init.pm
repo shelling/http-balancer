@@ -11,14 +11,22 @@ use Path::Tiny;
 sub run {
     my ($self, ) = @_;
 
-    require HTTP::Balancer::Model;
-    my $dbpath = path($HTTP::Balancer::Model::dbpath);
-    if ($dbpath->exists) {
-        say $dbpath->stringify . "has existed.";
+    $self->mkpath($self->config->dbpath);
+}
+
+sub mkpath {
+    my ($self, $path) = @_;
+
+    $path = path($path);
+
+    if ($path->exists) {
+        say "$path has existed.";
     } else {
-        say "create " . $dbpath->stringify;
-        $dbpath->mkpath({user => "root"}) unless $dbpath->exists;
+        say "create $path";
+        $path->mkpath;
     }
+
+    $self;
 }
 
 1;
