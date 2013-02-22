@@ -19,6 +19,11 @@ has [qw(name fullname address)] => (
     isa => "Str",
 );
 
+has forward => (
+    is  => "rw",
+    isa => "Str",
+);
+
 before remove => sub {
     my $self = shift;
     map { say $_->remove } $self->backends;
@@ -32,11 +37,12 @@ sub backends {
 
 sub hash {
     my ($self, ) = @_;
+
+    my @columns = qw(name fullname address port forward);
+    my %params; @params{@columns} = @$self{@columns};
+
     return {
-        name        => $self->name,
-        fullname    => $self->fullname,
-        address     => $self->address,
-        port        => $self->port,
+        %params,
         backends    => [map {$_->address . ":" . $_->port} $self->backends],
     };
 }

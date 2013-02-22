@@ -36,6 +36,13 @@ has port => (
     documentation   => "the TCP port this host listens to. default: 80",
 );
 
+has forward => (
+    is              => "rw",
+    isa             => "Str",
+    default         => "http",
+    documentation   => "the protocol used to communicate with backends, http or https. default: http",
+);
+
 sub ordinary_args {
     qw(name);
 }
