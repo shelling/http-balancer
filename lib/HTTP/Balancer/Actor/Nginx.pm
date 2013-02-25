@@ -34,10 +34,7 @@ HTTP::Balancer::Actor::Nginx - the Nginx actor
 
     $actor->start(
         pidfile => "/tmp/http-balancer.pid",
-        hosts   => [
-            $host1->hash,
-            $host2->hash,
-        ],
+        hosts   => [ $host1, $host2 ],
     );
 
     $actor->stop(
@@ -72,7 +69,7 @@ http {
 
     upstream <: $host.name :> {
         : for $host.backends -> $backend {
-        server <: $backend :>;
+        server <: $backend.address :>:<: $backend.port :>;
         : }
     }
 
@@ -82,6 +79,13 @@ http {
         server_name <: $host.fullname :>;
         : } else {
         server_name _;
+        : }
+
+        : if $host.ssl.key && $host.ssl.crt {
+        ssl on;
+        ssl_certificate     <: $host.ssl.crt :>;
+        ssl_certificate_key <: $host.ssl.key :>;
+        ssl_verify_client   off;
         : }
 
         location / {

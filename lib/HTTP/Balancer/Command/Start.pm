@@ -14,7 +14,7 @@ sub run {
     ->new
     ->start(
         pidfile => $self->config->pidfile,
-        hosts   => [$self->model("Host")->all(sub { shift->hash })],
+        hosts   => [$self->model("Host")->all],
     );
 }
 

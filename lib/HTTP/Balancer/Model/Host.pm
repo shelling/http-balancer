@@ -31,25 +31,13 @@ has ssl => (
 
 before remove => sub {
     my $self = shift;
-    map { say $_->remove } $self->backends;
+    map { $_->remove } @{$self->backends};
 };
 
 sub backends {
     my ($self, ) = @_;
-    $self->model("Backend")
-         ->where(host_id => $self->id);
-}
-
-sub hash {
-    my ($self, ) = @_;
-
-    my @columns = qw(name fullname address port forward);
-    my %params; @params{@columns} = @$self{@columns};
-
-    return {
-        %params,
-        backends    => [map {$_->address . ":" . $_->port} $self->backends],
-    };
+    [$self->model("Backend")
+         ->where(host_id => $self->id)];
 }
 
 1;

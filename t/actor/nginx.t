@@ -27,10 +27,12 @@ $actor->start(
             address  => "0.0.0.0",
             port     => 8080,
             fullname => "",
+            forward  => "http",
+            ssl      => { },
             backends => [
-                "localhost:3000",
-                "localhost:3001",
-                "localhost:3002",
+                { address => "localhost", port => "3000" },
+                { address => "localhost", port => "3001" },
+                { address => "localhost", port => "3002" },
             ],
         }
     ]
