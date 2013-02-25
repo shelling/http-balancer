@@ -9,7 +9,7 @@ sub run {
     my @columns = (
         "id",
         "name",
-        grep {!/^(id|name)$/} $self->model("Host")->columns
+        grep {!/^(id|name|ssl)$/} $self->model("Host")->columns
     );
 
     my $table = Text::Table->new(@columns);

@@ -24,6 +24,11 @@ has forward => (
     isa => "Str",
 );
 
+has ssl => (
+    is  => "rw",
+    isa => "HashRef[Str]",
+);
+
 before remove => sub {
     my $self = shift;
     map { say $_->remove } $self->backends;
